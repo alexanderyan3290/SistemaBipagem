@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mash</title>
+  <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+  <nav>
+    <div class="logo-container">
+      <img
+        src="https://mash.vtexassets.com/assets/vtex.file-manager-graphql/images/8247d099-2666-4eb2-a4f4-536dce9b53c2___8e33f1c74905dbbed007c5accd5c8949.svg"
+        alt="Mash Logo"
+      />
+    </div>
+  </nav>
+
+  <!-- Card -->
+  <div class="card">
+    <h1>SISTEMA DE CONTROLE E MOVIMENTAÇÃO DE OPs</h1>
+                
+    <div class="social-container">
+      <p>Bem-vindo(a)</p>
+    </div>
+                
+    <div class="separator"></div>
+
+    <form id="loginForm" autocomplete="off">
+      <div>
+        <p>
+          <label for="icodigo_de_cofirmacao">
+            Use sua credencial para entrar.
+          </label>
+        </p>
+        <input
+          type="text"
+          name="codigo_de_cofirmacao"
+          id="icodigo_de_cofirmacao"
+          required
+          minlength="1"
+          maxlength="15"
+          placeholder="Digite o código do setor."
+        />
+      </div>
+
+      <input type="submit" value="ENTRAR" />
+    </form>
+  </div>
+
+  <script src="assets/js/login.js"></script>
+</body>
+</html>
