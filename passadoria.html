@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Torna a página responsiva -->
+    <title>Movimentação</title>
+    <link rel="stylesheet" href="assets/css/sit.css" />
+    <!-- Seu CSS -->
+    <!-- Boxicons (ícones) -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <!-- Logo da empresa -->
+      <div class="logo">
+        <img
+          src="https://mash.vtexassets.com/assets/vtex.file-manager-graphql/images/8247d099-2666-4eb2-a4f4-536dce9b53c2___8e33f1c74905dbbed007c5accd5c8949.svg"
+          alt="Mash Logo"
+        />
+      </div>
+
+      <!-- Ícones e botões da navbar -->
+      <div class="nav-icons">
+        <button class="btn"><i class="bx bx-plus-circle"></i> Novo</button>
+        <i class="bx bx-bell"></i>
+        <i class="bx bx-menu" id="openSidebar"></i>
+        <i class="bx bxs-user-circle avatar" id="op1Sidebare"></i>
+      </div>
+    </nav>
+
+    <!-- SIDEBAR (Perfil) -->
+    <div class="sidebare closed1" id="sidebare">
+      <div class="sidebare-header">
+        <h3>Passadoria</h3>
+        <span class="close1-btn" id="close1Sidebare">
+          <i class="bx bx-x"></i>
+          <!-- botão de fechar -->
+        </span>
+      </div>
+
+      <div class="button">
+        <a href="login.html"><button class="btns btns-green">sair</button></a>
+      </div>
+    </div>
+
+    <!-- SIDEBAR (menu lateral) -->
+    <div class="sidebar closed" id="sidebar">
+      <div class="sidebar-header">
+        <h3>Confirmações de OPs</h3>
+        <span class="close-btn" id="closeSidebar">
+          <i class="bx bx-x"></i>
+          <!-- botão de fechar -->
+        </span>
+      </div>
+      <div class="separator"></div>
+      <!-- Card de informações de ordem -->
+      <div class="task" id="menuConfirmacao">
+        <p><strong>Nome:</strong><span id="confNome"></span></p>
+        <p><strong>Conferido:</strong><span id="confConferido"></span></p>
+        <p><strong>Ordem de Produção:</strong><span id="confOrdem"></span></p>
+        <p><strong>Produto:</strong><span id="confProduto"></span></p>
+        <p><strong>Cor:</strong><span id="confCor"></span></p>
+        <p><strong>Tamanho:</strong><span id="confTamanho"></span></p>
+        <p><strong>Quantidade:</strong><span id="confQuantidade"></span></p>
+        <p><strong>Máquina:</strong><span id="confMaquina"></span></p>
+      </div>
+      <div class="buttons">
+        <button class="btn btn-green">ENTREGUE</button>
+        <button class="btn btn-red">NÃO ENTREGUE</button>
+      </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="container">
+      <h1>Bem-vindo!</h1>
+      <p>
+        O objetivo desta tela é agilizar o processo de movimentação de ordens de
+        produção, fazendo com que a fase seja movimentada em tempo real.
+      </p>
+    </div>
+
+    <!-- FORMULÁRIO -->
+    <div class="container">
+      <h1>Movimentação</h1>
+      <h2 style="font-size: 16px; margin-bottom: 10px; color: #444">
+        Em Produção
+      </h2>
+
+      <!-- Linha 1 -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="codigo">CÓDIGO</label>
+          <input type="text" id="codigo" name="codigo" />
+        </div>
+        <div class="form-group">
+          <label for="nome">NOME</label>
+          <input type="text" id="nome" name="nome" />
+        </div>
+      </div>
+
+      <!-- Linha 2 -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="conferido">CONFERIDO POR</label>
+          <input type="text" id="conferido" name="conferido" />
+        </div>
+      </div>
+
+      <!-- Linha 3 -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ordem">ORDEM DE PRODUÇÃO</label>
+          <input type="text" id="ordem" name="ordem" />
+        </div>
+        <div class="form-group">
+          <label for="data">DATA</label>
+          <input type="date" id="data" name="data" value="2025-08-11" />
+        </div>
+      </div>
+
+      <!-- Linha 4 -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="produto">PRODUTO</label>
+          <input type="text" id="produto" name="produto" />
+        </div>
+        <div class="form-group">
+          <label for="cor">COR</label>
+          <input type="text" id="cor" name="cor" />
+        </div>
+        <div class="form-group">
+          <label for="tamanho">TAMANHO</label>
+          <input type="text" id="tamanho" name="tamanho" />
+        </div>
+      </div>
+
+      <!-- Linha 5 -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="movimentacao">QUANTIDADE</label>
+          <input type="text" id="movimentacao" name="movimentacao" />
+        </div>
+      </div>
+
+      <!-- Linha 6 -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="maquina">MÁQUINA</label>
+          <input type="text" id="maquina" name="maquina" />
+        </div>
+      </div>
+
+      <!-- Botões -->
+      <div class="form-actions">
+        <button class="btn btn-save">Salvar</button>
+        <button class="btn btn-cancel">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- JS Sidebar -->
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
