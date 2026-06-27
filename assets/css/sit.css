@@ -1,0 +1,449 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;                         /* remove margens padrão dos navegadores */
+  padding: 0;                        /* remove paddings padrão dos navegadores */
+  box-sizing: border-box;            /* inclui bordas/padding no cálculo do width/height */
+  font-family: Arial, sans-serif;    /* define fonte base para toda a página */
+}
+
+body {
+  background-image: linear-gradient(to bottom, #dedfe1, #bdd2fc, #06214d); /* gradiente de fundo vertical */
+  min-height: 100vh;                 /* garante altura mínima de viewport inteira */
+  padding: 40px 20px;                /* respiro geral nas bordas da página */
+}
+
+/* ================= NAVBAR ================= */
+nav {
+  position: fixed;                   /* fixa a barra no topo da janela (não rola junto com o conteúdo) */
+  top: 0;                            /* encosta no topo */
+  left: 0;                           /* encosta na esquerda */
+  width: 100%;                       /* ocupa toda a largura da janela */
+  background: white;                 /* fundo branco da navbar */
+  padding: 10px 20px;                /* espaçamento interno (vertical/horizontal) */
+  display: flex;                     /* usa flexbox para alinhar conteúdo em linha */
+  align-items: center;               /* alinha verticalmente itens ao centro */
+  justify-content: space-between;    /* logo à esquerda, ícones à direita */
+  flex-wrap: nowrap;                 /* impede que os itens quebrem para a linha de baixo */
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.378); /* sombra suave abaixo da barra */
+  border-bottom: 1px solid #e5e5e5;  /* linha sutil na base da navbar */
+  z-index: 100;                      /* garante que a navbar fique acima do conteúdo */
+}
+
+.logo img {
+  max-height: 40px;                  /* limita a altura do logo */
+  width: auto;                       /* mantém a proporção da imagem */
+  display: block;                    /* evita “espaço fantasma” de imagens inline */
+}
+
+.nav-icons {
+  display: flex;                     /* agrupa os ícones/botões em linha */
+  align-items: center;               /* centraliza verticalmente */
+  gap: 15px;                         /* espaço entre ícones/botões */
+  flex-wrap: nowrap;                 /* não deixa quebrar para baixo */
+  overflow-x: auto;                  /* se não couber, permite rolagem horizontal */
+  /* (REMOVIDO) stroke-width: none;  -> propriedade de SVG; não se aplica aqui */
+}
+
+.nav-icons::-webkit-scrollbar{
+  display: none;                     /* esconde a barra de rolagem no Chrome/Safari */
+}
+
+.nav-icons .btn {
+  padding: 6px 12px;                 /* tamanho do botão */
+  background: #325cc0;               /* cor do botão */
+  border: none;                      /* remove borda nativa */
+  border-radius: 6px;                /* cantos arredondados */
+  color: white;                      /* cor do texto/ícone interno */
+  cursor: pointer;                   /* cursor de “clique” */
+  font-size: 14px;                   /* tamanho da fonte */
+  display: flex;                     /* alinha ícone + texto dentro do botão */
+  align-items: center;               /* centraliza verticalmente ícone+texto */
+  gap: 5px;                          /* espaço entre ícone e texto */
+  white-space: nowrap;               /* evita quebra de linha dentro do botão */
+}
+
+.nav-icons i {
+  font-size: 22px;                   /* tamanho dos ícones (ex.: Font Awesome) */
+  cursor: pointer;                   /* cursor de “clique” ao passar por cima */
+  color: #333;                       /* cor dos ícones */
+  flex-shrink: 0;                    /* impede o ícone de encolher em telas pequenas */
+}
+
+.nav-icons .avatar {
+  border-radius: 50%;                /* deixa a imagem do avatar circular */
+  max-width: 40px;                   /* limita o tamanho do avatar */
+  height: auto;                      /* mantém proporção */
+  flex-shrink: 0;                    /* impede encolher em telas pequenas */
+}
+
+/* ================= RESPONSIVIDADE NAVBAR ================= */
+@media (max-width: 768px) {          /* regras para tablets e celulares “grandes” */
+  nav {
+    flex-direction: row;             /* mantém logo e ícones na MESMA linha */
+    align-items: center;             /* centraliza verticalmente */
+    justify-content: space-between;  /* separa logo (esq) e ícones (dir) */
+    padding: 10px 15px;              /* reduz um pouco o padding lateral */
+  }
+
+  .logo img {
+    max-height: 35px;                /* reduz logo */
+  }
+
+  .nav-icons {
+    gap: 10px;                       /* diminui espaçamento entre ícones */
+    flex-wrap: nowrap;               /* continua sem quebrar */
+    overflow-x: auto;                /* ativa rolagem horizontal se necessário */
+  }
+
+  .nav-icons .btn {
+    font-size: 13px;                 /* fonte menor pro botão */
+    padding: 5px 10px;               /* botão um pouco menor */
+  }
+
+  .nav-icons i {
+    font-size: 20px;                 /* ícone menor */
+  }
+
+  .nav-icons .avatar {
+    max-width: 32px;                 /* avatar menor */
+  }
+}
+
+@media (max-width: 480px) {          /* regras para celulares pequenos */
+  nav {
+    flex-direction: row;             /* mantém tudo em uma linha no mobile */
+    gap: 8px;                        /* pequena folga entre logo e ícones */
+    padding: 8px 10px;               /* padding mais compacto */
+  }
+
+  .logo img {
+    max-height: 30px;                /* logo ainda menor */
+  }
+
+  .nav-icons {
+    gap: 8px;                        /* menos espaço entre ícones */
+    justify-content: flex-end;       /* empurra os ícones para a direita */
+    flex-wrap: nowrap;               /* não quebra */
+    overflow-x: auto;                /* rolagem horizontal se apertar */
+  }
+
+  .nav-icons .btn {
+    font-size: 12px;                 /* fonte do botão menor */
+    padding: 4px 8px;                /* botão mais compacto */
+  }
+
+  .nav-icons i {
+    font-size: 18px;                 /* ícone menor */
+  }
+
+  .nav-icons .avatar {
+    max-width: 28px;                 /* avatar menor */
+  }
+}
+
+/* ================= CONTAINER ================= */
+.container1 {
+  max-width: 1200px;                 /* limita a largura do conteúdo */
+  width: 100%;                       /* ocupa 100% até o máximo acima */
+  margin: 50px auto 20px;           /* centraliza (auto) e cria espaço abaixo da navbar fixa */
+  padding: 30px;                     /* respiro interno do container */
+  background: white;                 /* fundo branco do card principal */
+  border-radius: 8px;                /* cantos arredondados */
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.1); /* sombra sutil para destaque */
+}
+
+.container {
+  max-width: 1200px;                 /* limita a largura do conteúdo */
+  width: 100%;                       /* ocupa 100% até o máximo acima */
+  margin: 50px auto 20px;           /* centraliza (auto) e cria espaço abaixo da navbar fixa */
+  padding: 30px;                     /* respiro interno do container */
+  background: white;                 /* fundo branco do card principal */
+  border-radius: 8px;                /* cantos arredondados */
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.1); /* sombra sutil para destaque */
+}
+
+h1 {
+  font-size: 20px;                   /* tamanho do título */
+  margin-bottom: 25px;               /* espaço inferior do título */
+  color: #333;                       /* cor do texto do título */
+}
+
+/* ================= MENU ================= */
+.sidebar {
+  position: fixed;                   /* mantém a barra lateral fixa na lateral */
+  top: 60px;                         /* começa logo abaixo da navbar (ajusta conforme altura da navbar) */
+  right: 0;                          /* encostada na direita */
+  width: 400px;                      /* largura da sidebar em telas grandes */
+  height: calc(100% - 60px);         /* ocupa o restante da altura da tela */
+  background: white;                 /* fundo branco */
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.473); /* sombra à esquerda da sidebar */
+  padding: 20px;                     /* respiro interno */
+  display: flex;                     /* layout interno em flex */
+  flex-direction: column;            /* empilha itens verticalmente */
+  gap: 15px;                         /* espaço entre elementos internos */
+  border-radius: 12px 0 0 12px;      /* arredonda cantos visíveis (esquerda) */
+  border-left: 1px solid #e5e5e5;    /* borda sutil à esquerda */
+  transform: translateX(100%);       /* começa escondida fora da tela à direita */
+  transition: transform 0.3s ease-in-out; /* anima abrir/fechar */
+  z-index: 200;                      /* acima da navbar e do conteúdo */
+  overflow-y: auto;                  /* rolagem vertical se o conteúdo passar */
+}
+
+.sidebar.open {
+  transform: translateX(0);          /* quando recebe .open, desliza para dentro da tela */
+}
+
+.sidebar-header {
+  display: flex;                     /* alinha título e botão fechar em linha */
+  justify-content: space-between;    /* separa os dois nas extremidades */
+  align-items: center;               /* centraliza verticalmente */
+  gap: 10px;                         /* espaço entre itens (se houver mais) */
+  margin-bottom: 0;                  /* remove espaço extra abaixo */
+}
+
+.sidebar-header h3 {
+  font-size: 17px;                   /* tamanho do título da sidebar */
+  font-weight: bold;                 /* negrito */
+  color: #333;                       /* cor do texto */
+  margin: 0;                         /* zera margem padrão do h3 */
+  flex: 1;                           /* ocupa o espaço para “empurrar” o botão fechar para a direita */
+}
+
+.separator {
+  height: 1px;                       /* espessura da linha separadora */
+  background-color: #33333386;       /* cor (com transparência) da linha */
+  width: 100%;                       /* ocupa toda a largura disponível */
+}
+
+.close-btn {
+  font-size: 29px;                   /* tamanho do ícone/botão de fechar */
+  cursor: pointer;                   /* cursor de clique */
+  color: #333;                       /* cor padrão */
+  transition: color 0.2s;            /* suaviza a mudança de cor no hover */
+}
+
+.close-btn:hover {
+  color: #0663f7;                    /* cor ao passar o mouse */
+}
+
+
+
+
+/* ================= perfil ================= */
+.sidebare {
+  position: fixed;                   /* mantém a barra lateral fixa na lateral */
+  top: 60px;                         /* começa logo abaixo da navbar (ajusta conforme altura da navbar) */
+  right: 0;                          /* encostada na direita */
+  width: 400px;                      /* largura da sidebar em telas grandes */
+  height: 20%;         /* ocupa o restante da altura da tela */
+  background: white;                 /* fundo branco */
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.473); /* sombra à esquerda da sidebar */
+  padding: 20px;                     /* respiro interno */
+  display: flex;                     /* layout interno em flex */
+  flex-direction: column;            /* empilha itens verticalmente */
+  gap: 15px;                         /* espaço entre elementos internos */
+  border-radius: 12px 0 0 12px;      /* arredonda cantos visíveis (esquerda) */
+  border-left: 1px solid #e5e5e5;    /* borda sutil à esquerda */
+  transform: translateX(100%);       /* começa escondida fora da tela à direita */
+  transition: transform 0.3s ease-in-out; /* anima abrir/fechar */
+  z-index: 200;                      /* acima da navbar e do conteúdo */
+  overflow-y: auto;                  /* rolagem vertical se o conteúdo passar */
+}
+
+.sidebare.op1 {
+  transform: translateX(0);          /* quando recebe .open, desliza para dentro da tela */
+}
+
+.sidebare-header {
+  display: flex;                     /* alinha título e botão fechar em linha */
+  justify-content: space-between;    /* separa os dois nas extremidades */
+  align-items: center;               /* centraliza verticalmente */
+  gap: 10px;                         /* espaço entre itens (se houver mais) */
+  margin-bottom: 0;                  /* remove espaço extra abaixo */
+}
+
+.sidebare-header h3 {
+  font-size: 20px;                   /* tamanho do título da sidebar */
+  font-weight: bold;                 /* negrito */
+  color: #333;                       /* cor do texto */
+  margin: 0;                         /* zera margem padrão do h3 */
+  flex: 1;                           /* ocupa o espaço para “empurrar” o botão fechar para a direita */
+}
+
+.close1-btn {
+  font-size: 29px;                   /* tamanho do ícone/botão de fechar */
+  cursor: pointer;                   /* cursor de clique */
+  color: #333;                       /* cor padrão */
+  transition: color 0.2s;            /* suaviza a mudança de cor no hover */
+}
+
+.close1-btn:hover {
+  color: #0663f7;                    /* cor ao passar o mouse */
+}
+
+/* ================= OVERLAY ================= */
+.overlay {
+  display: none;                     /* começa invisível */
+  position: fixed;                   /* cobre a tela toda */
+  inset: 0;                          /* atalho para top/right/bottom/left = 0 */
+  background: rgba(0, 0, 0, 0.08);   /* véu translúcido sobre o conteúdo */
+  z-index: 150;                      /* fica entre o conteúdo e a sidebar */
+}
+
+.overlay.active {
+  display: block;                    /* quando recebe .active, aparece */
+}
+
+/* ================= TASK CARDS ================= */
+.task {
+  background: #d4dbe8;               /* fundo do card */
+  padding: 20px;                     /* espaçamento interno */
+  border-radius: 6px;                /* cantos arredondados */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16); /* sombra suave */
+}
+
+/*lista de card*/
+
+.task{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.task strong {
+  color: #444;                       /* cor do texto em negrito dentro do card */
+}
+
+.buttons {
+  display: flex;                     /* coloca botões lado a lado */
+  gap: 10px;                         /* espaço entre botões */
+  flex-wrap: wrap;                   /* deixa quebrar linha se não couber */
+}
+
+.btn {
+  padding: 8px;                      /* área clicável do botão */
+  border: none;                      /* remove borda padrão */
+  border-radius: 4px;                /* cantos arredondados */
+  color: white;                      /* cor do texto do botão */
+  cursor: pointer;                   /* cursor de clique */
+  font-size: 14px;                   /* tamanho do texto */
+}
+
+.btns {
+  padding: 8px; 
+  width: 100%;                     /* área clicável do botão */
+  border: none;                      /* remove borda padrão */
+  border-radius: 4px;                /* cantos arredondados */
+  color: white;                      /* cor do texto do botão */
+  cursor: pointer;                   /* cursor de clique */
+  font-size: 14px;                   /* tamanho do texto */
+}
+
+.btns-green {
+  background-color: #325cbf; /* botão verde translúcido */
+}
+
+.btns-green:hover {
+  background-color: #325cbfc1; /* botão verde translúcido */
+}
+
+.btn-green {
+  background-color: rgba(0, 128, 0, 0.7); /* botão verde translúcido */
+}
+
+.btn-red {
+  background-color: rgba(255, 0, 0, 0.7); /* botão vermelho translúcido */
+}
+
+/* ================= FORMULÁRIO ================= */
+.form-row {
+  display: flex;                     /* agrupa campos em linha */
+  gap: 20px;                         /* espaço entre campos */
+  flex-wrap: wrap;                   /* permite quebrar para a linha de baixo no mobile */
+  margin-bottom: 20px;               /* espaço abaixo do grupo de campos */
+}
+
+
+.form-group {
+  flex: 1;                           /* cada grupo tenta ocupar espaço igual */
+  min-width: 220px;                  /* largura mínima para não ficar muito estreito */
+}
+
+label {
+  display: block;                    /* garante que o label ocupe uma linha inteira */
+  font-size: 14px;                   /* tamanho do texto do rótulo */
+  margin-bottom: 5px;                /* espaço entre label e input */
+  color: #555;                       /* cor do label */
+}
+
+input,
+select {
+  width: 100%;                       /* campo ocupa toda a largura disponível */
+  padding: 12px;                     /* respiro interno */
+  font-size: 14px;                   /* tamanho do texto */
+  border: 1px solid #ccc;            /* borda do campo */
+  border-radius: 6px;                /* cantos arredondados do campo */
+}
+
+.form-actions {
+  display: flex;                     /* agrupa botões de ação em linha */
+  justify-content: flex-end;         /* alinha botões à direita */
+  gap: 10px;                         /* espaço entre botões */
+  margin-top: 25px;                  /* separa dos campos acima */
+}
+
+.btn-save {
+  font-size: 18px;                   /* destaque no botão salvar */
+  background-color: #28a745;         /* cor verde padrão de ação positiva */
+}
+
+.btn-cancel {
+  background-color: #ccc;            /* cor neutra para cancelar */
+  color: #333;                       /* cor do texto do cancelar */
+}
+
+.btn:hover {
+  opacity: 0.9;                      /* leve feedback visual ao passar o mouse */
+}
+
+
+/* ================= RESPONSIVIDADE GERAL ================= */
+@media (max-width: 1024px) {         /* notebooks menores / tablets na horizontal */
+  .sidebar {
+    width: 300px;                    /* reduz a largura da sidebar */
+  }
+}
+
+@media (max-width: 768px) {          /* tablets e celulares grandes */
+  .container {
+    margin-top: 150px;               /* mais espaço por causa da navbar fixa */
+    padding: 20px;                   /* padding um pouco menor */
+  }
+
+  .sidebar {
+    width: 80%;                      /* sidebar ocupa 80% da largura da tela */
+    top: 80px;                       /* desce um pouco (navbar pode estar mais alta) */
+    height: calc(100% - 100px);      /* recalcula a altura útil */
+  }
+
+  .nav-icons {
+    gap: 10px;                       /* ajusta espaço entre ícones */
+  }
+
+}
+
+@media (max-width: 480px) {          /* celulares pequenos */
+  body {
+    padding: 20px 10px;              /* diminui padding geral da página */
+  }
+
+  .sidebar {
+    width: 100%;                     /* sidebar ocupa a tela inteira na largura */
+    border-radius: 0;                /* remove cantos arredondados para encaixar na tela */
+  }
+
+  .container {
+    margin-top: 50px;               /* mais espaço para cabeçalho fixo em telas menores */
+    padding: 15px;                   /* padding interno mais compacto */
+  }
+}
